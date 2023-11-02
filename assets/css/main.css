@@ -1,1 +1,7 @@
 /* main.css */
+
+.board-cell {
+    width: 160px;
+    height: 160px;
+    border: 5px solid gray;
+}

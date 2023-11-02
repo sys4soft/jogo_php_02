@@ -25,6 +25,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         ],
         'game_turn' => 1,
         'game_number' => 1,
+        'active_player' => null
     ];
 
     $_SESSION = $data;
