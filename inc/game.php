@@ -53,7 +53,7 @@ if (isset($_GET['player']) && isset($_GET['x']) && isset($_GET['y'])) {
 
         // check for a draw
         if ($_SESSION['game_turn'] == 9 && empty($winner)) {
-            $winner = 'draw';
+            $winner = 'Empate!';
         }
 
         if (empty($winner)) {
@@ -133,12 +133,15 @@ function check_game_status($player)
         <div class="col">
             <h3 class="text-center">Tic Tac Toe</h3>
             <hr>
-            <div class="row">
-                <div class="col-6">
+            <div class="row align-items-center">
+                <div class="col">
                     <h3 class="text-center <?= $_SESSION['active_player'] == 1 ? 'text-warning' : '' ?>"><?php echo $_SESSION['player_1_name']; ?></h3>
                     <h3 class="text-center"><?php echo $_SESSION['player_1_score']; ?></h3>
                 </div>
-                <div class="col-6 text-end">
+                <div class="col">
+                    <h3 class="text-center"><span class="text-info">JOGO</span> <?php echo $_SESSION['game_number']; ?></h3>
+                </div>
+                <div class="col text-end">
                     <h3 class="text-center <?= $_SESSION['active_player'] == 2 ? 'text-warning' : '' ?>"><?php echo $_SESSION['player_2_name']; ?></h3>
                     <h3 class="text-center"><?php echo $_SESSION['player_2_score']; ?></h3>
                 </div>
@@ -162,15 +165,15 @@ function check_game_status($player)
             <?php endfor; ?>
 
             <?php if (!empty($winner)) : ?>
-                <div class="text-center mt-5">
+                <div class="text-center mt-3">
                     <h3 class="text-center text-warning"><?= $winner ?></h3>
-                    <div class="text-center mt-5">
-                        <a href="index.php?route=game&next=1" class="btn btn-success w-25">Próximo jogo</a>
+                    <div class="text-center mt-3">
+                        <a href="index.php?route=game&next=1" class="btn btn-success w-25">PRÓXIMO JOGO</a>
                     </div>
                 </div>
             <?php endif; ?>
 
-            <div class="text-center mt-5">
+            <div class="text-center mt-3">
                 <a href="index.php?route=start" class="btn btn-dark w-25">REINICIAR</a>
             </div>
 
