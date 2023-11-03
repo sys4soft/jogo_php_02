@@ -2,8 +2,22 @@
 
 defined('CONTROL') or die('Acesso negado');
 
-if(empty($_SESSION['active_player'])){
-    $_SESSION['active_player'] = 1;
+// when the player clicks on a cell 
+if(isset($_GET['player']) && isset($_GET['x']) && isset($_GET['y'])){
+
+    $player = $_GET['player'];
+    $x = $_GET['x'];
+    $y = $_GET['y'];
+
+    // check if there is already a symbol in the cell
+    if(empty($_SESSION['game_board'][$x][$y])){
+
+        // defines the symbol of the player
+        $_SESSION['game_board'][$x][$y] = $player == 1 ? 'X' : 'O';
+
+        // change the active player
+        $_SESSION['active_player'] = $player == 1 ? 2 : 1;
+    }
 }
 
 ?>
@@ -27,7 +41,7 @@ if(empty($_SESSION['active_player'])){
             <?php for ($row = 0; $row <= 2; $row++) : ?>
                 <div class="d-flex justify-content-center">
                     <?php for ($col = 0; $col <= 2; $col++) : ?>
-                        <a href="index.php?route=game&player=<?= $_SESSION['player'] ?>&x=<?= $col ?>&y=<?= $row ?>">
+                        <a href="index.php?route=game&player=<?= $_SESSION['active_player'] ?>&x=<?= $row ?>&y=<?= $col ?>">
                             <div class="board-cell text-center">
                                 <?php if ($_SESSION['game_board'][$row][$col] == 'X') : ?>
                                     <img src="assets/images/times.png">
